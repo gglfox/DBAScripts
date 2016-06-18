@@ -1,0 +1,20 @@
+===== Comandos =====
+# kill SPID 		-- Mata proceso
+# sp_databases		-- Obtiene base de datos
+# xp_fixeddrives	-- Obtiene espacio diponible
+# sp_who2 'active'	-- Obtiene procesos en BD
+# sp_helptext 'Name'	-- Obtiene fuente de objeto
+# sp_changedbowner 'sa'	-- Asigna propietario BD
+
+# exec sp_rename 'ObjA','ObjB'	-- Cambia nombre objeto
+# dbcc inputbuffer(SPID)		-- Obtiene instruccion
+
+===== SQL =====
+# SELECT @@SPID		-- Obtiene sesion actual
+# SELECT @@VERSION	-- Obtiene version SQL Server
+# SELECT @@LANGUAGE	-- Obtiene idioma SQL Server
+# SELECT databasepropertyex ('tempdb', 'recovery') -- Obtiene model recovery
+
+===== System tables =====
+# SELECT * FROM sys.databases 		-- Databases
+# SELECT * FROM msdb.dbo.sysjobs	-- Jobs

@@ -1,0 +1,30 @@
+===== AS/400 =====
+# addlible	-- Agrega liberia
+# dspaspbrm	-- Visualiza ASP
+# dspsavf	-- Visualiza objetos salvados
+# dspfd		-- Visualiza descripcion de archivo
+# dspffd	-- Visualiza descripcion campos archivo
+# wrkactjob	-- Trabajos activos
+# wrkobj 	-- Trabajar con objetos
+# wrkobjlck	-- Trabajar con bloqueos objetos
+# crtsavf	-- Crea archivo de salvar
+# savobj	-- Salvar objeto
+# signoff	-- Finaliza sesion
+# edtlibl	-- Editar lista bibliotecas
+# sbmjob	-- Somoter trabajo
+# strsbs	-- Arrncar subsistema
+# rmvm		-- Elimina miembro
+# dspdbr	-- Ver relaciones de datos
+# wrkqry 	-- Trabajar con consultas
+#
+# wrkjobscde	-- Planificacion de trabajos
+# setaspgrp		-- Establecer grupo de ASP
+# endsbs option(*immed) -- Finaliza subsistema
+# ftp + bin + put/get 	-- FTP commands
+
+===== Mimix =====
+* Subsistema : mimixqgpl/mimixsbs
+* Licencia: *.LKP
+
+# wrkdg		-- Trabajar con datagroups
+# wrksys	-- Trabajar con sistemas

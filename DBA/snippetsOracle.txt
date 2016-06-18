@@ -1,0 +1,16 @@
+=== RAC ===
+# srvctl status database -d bankbu = Status nodos
+# srvctl start Instance -d BANKBU -i BANKBU2 = Iniciar nodo 2.
+# srvctl stop Instance -d BANKBU -i BANKBU2 = Detener nodo 2.
+
+===== System tables =====
+# SELECT * FROM all_directories	-- Informacion de directorios
+# SELECT * FROM v$database;		-- Informacion BD
+
+===== Commands =====
+# sqlplus / as sysdba;	-- SQL*Plus
+# shutdown immediate;	-- Reinicio BD immediato
+# shutdown abort;		-- Reinicio	BD abortado
+
+===== SQL =====
+# ALTER SESSION SET current_schema = OPENCARD/COBRA;	-- Altera sesion
