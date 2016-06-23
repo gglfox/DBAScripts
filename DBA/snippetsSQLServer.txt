@@ -18,3 +18,11 @@
 ===== System tables =====
 # SELECT * FROM sys.databases 		-- Databases
 # SELECT * FROM msdb.dbo.sysjobs	-- Jobs
+
+===== Notes =====
+Enabled DAC SQLEXPRESS -> Startup Parameters Instance -> Add TRACEFLAG -T7806
+
+
+---
+sys.master_files
+EXEC master..sp_helpfile

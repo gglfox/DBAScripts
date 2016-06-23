@@ -9,7 +9,8 @@ name,
 filename,
 (sum(size) * 8) / 1024 as Size_MB,
 CAST(((sum(size) * 8) / 1024) / 1024.0 AS DECIMAL(10,2)) as Size_GB
-FROM sysaltfiles
-WHERE dbid > 4 --excluyendo las BD del sistema
+FROM master..sysaltfiles
+WHERE DB_name(dbid) = 'tempdb'
+--WHERE dbid > 4 --excluyendo las BD del sistema
 GROUP BY DB_name(dbid), groupid,name, filename
 ORDER BY 5 DESC
