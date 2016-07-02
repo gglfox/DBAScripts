@@ -1,5 +1,5 @@
 SET NOCOUNT OFF
---DBCC UPDATEUSAGE(0)
+DBCC UPDATEUSAGE(0)
 
 -- Creacion de tabla temporal
 DECLARE @Results TABLE (
@@ -10,8 +10,6 @@ DECLARE @Results TABLE (
 	index_size VARCHAR(18),
 	unused VARCHAR(18)
 )
-
---
 INSERT @Results EXEC sp_msForEachTable 'EXEC sp_spaceused ''?''' 
 
 -- Actualizacion de valores "KB" en los campos
@@ -24,10 +22,22 @@ SET reserved = LEFT(reserved,LEN(reserved)-3),
 -- Informacion de Espacios
 SELECT
 	name,
-	rows AS Rows,
-	reserved AS [Tamaño en Disco (KB)],
-	data AS [Datos (KB)],
-	index_size AS [Indices (KB)],
-	unused AS [No usado (KB)]
+	rows,
+	--
+	reserved reservedKB,
+	(reserved/1024) reservedMB,
+	((reserved/1024)/1024) reservedGB,
+	--
+	data dataKB,
+	(data/1024) dataMB,
+	((data/1024)/1024) dataGB,
+	--
+	index_size indexKB,
+	(index_size/1024) indexMB,
+	((index_size/1024)/1024) indexGB,
+	--
+	unused unusedKB,
+	(unused/1024) unusedMB,
+	((unused/1024)/1024) unusedGB
 FROM @Results
 ORDER BY  CONVERT(BIGINT,reserved) DESC

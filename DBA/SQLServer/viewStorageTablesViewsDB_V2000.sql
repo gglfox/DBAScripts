@@ -1,4 +1,5 @@
 SET NOCOUNT OFF
+DBCC UPDATEUSAGE(0)
 
 -- Cursor con tablas de sistema, tablas de usuario y vistas
 DECLARE curObjects CURSOR FOR
@@ -40,11 +41,23 @@ SET reserved = LEFT(reserved,LEN(reserved)-3),
 -- Informacion de Espacios
 SELECT
 	name,
-	reserved AS [Tamaño en Disco (KB)],
-	data AS [Datos (KB)],
-	index_size AS [Indices (KB)],
-	unused AS [No usado (KB)],
-	rows AS Rows 
+	rows,
+	--
+	reserved reservedKB,
+	(reserved/1024) reservedMB,
+	((reserved/1024)/1024) reservedGB,
+	--
+	data dataKB,
+	(data/1024) dataMB,
+	((data/1024)/1024) dataGB,
+	--
+	index_size indexKB,
+	(index_size/1024) indexMB,
+	((index_size/1024)/1024) indexGB,
+	--
+	unused unusedKB,
+	(unused/1024) unusedMB,
+	((unused/1024)/1024) unusedGB
 FROM #results
 ORDER BY  CONVERT(BIGINT,reserved) DESC
 

@@ -6,6 +6,7 @@
 ===== System tables =====
 # SELECT * FROM all_directories	-- Informacion de directorios
 # SELECT * FROM v$database;		-- Informacion BD
+# SELECT * FROM v$encryption_wallet; -- Informacion Wallet
 
 ===== Commands =====
 # sqlplus / as sysdba;	-- SQL*Plus
