@@ -9,10 +9,10 @@ SELECT
 	name nameFileLogic,
 	physical_name nameFilePhysical,
 	MAX(databasepropertyex (DB_name(database_id), 'recovery')) modelRecovery,
-	(SUM(size) * 8) / 1024 AS sizeMB,
-	CAST(((sum(size) * 8) / 1024) / 1024.0 AS DECIMAL(10,2)) sizeGB
+	((SUM(CAST(size AS BIGINT))*8)/1024) sizeMB,
+	(((SUM(CAST(size AS BIGINT))*8)/1024)/1024) sizeGB
 FROM sys.master_files
-WHERE database_id > 4 --excluyendo las BD del sistema
+WHERE database_id > 4
 AND type_desc = 'LOG'
 GROUP BY DB_name(database_id), type_desc, name,physical_name
 ORDER BY 6 DESC
