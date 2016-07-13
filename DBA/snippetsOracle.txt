@@ -1,3 +1,10 @@
+=== UNIX ===
+# pwd	-- Directorio actual
+# mkdir	-- Crea directorio
+# cd 	-- Ir a directorio
+# ls	-- Lista de archivos
+# sqlplus / as sysdba -- SQL*Plus
+
 === RAC ===
 # srvctl status database -d bankbu = Status nodos
 # srvctl start Instance -d BANKBU -i BANKBU2 = Iniciar nodo 2.

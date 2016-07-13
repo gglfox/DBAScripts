@@ -1,6 +1,6 @@
 -- Mata sessiones inactivas
 DECLARE
-	CURSOR CUR_SESSION
+	CURSOR curSession
 	IS
 	SELECT  osuser, 
 	        username, 
@@ -17,7 +17,7 @@ DECLARE
 
 	SQLD VARCHAR2(100);
 BEGIN
-   FOR I IN CUR_SESSION
+   FOR I IN curSession
    LOOP
    	SQLD := 'ALTER SYSTEM KILL SESSION '||''''||I.SID||','||I.SERIAL||'''';
    	EXECUTE IMMEDIATE SQLD;
