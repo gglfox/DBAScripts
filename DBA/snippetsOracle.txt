@@ -3,7 +3,8 @@
 # mkdir	-- Crea directorio
 # cd 	-- Ir a directorio
 # ls	-- Lista de archivos
-# sqlplus / as sysdba -- SQL*Plus
+# sqlplus / as sysdba 		-- SQL*Plus
+# export ORACLE_SID=bankbu 	-- Exporta variable de entorno
 
 === RAC ===
 # srvctl status database -d bankbu = Status nodos
@@ -22,3 +23,6 @@
 
 ===== SQL =====
 # ALTER SESSION SET current_schema = OPENCARD/COBRA;	-- Altera sesion
+
+----------
+# ps -ef | grep smon -- Instancias

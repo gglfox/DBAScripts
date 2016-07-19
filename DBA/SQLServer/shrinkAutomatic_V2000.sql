@@ -10,20 +10,22 @@ DECLARE @Ind INT SET @Ind = 0
 
 DECLARE cFiles CURSOR READ_ONLY FOR
 	SELECT
-		DB_NAME(database_id) dbName,
-		(CASE type_desc 
-			WHEN 'LOG' THEN 'LOG FILES'
-			WHEN 'ROWS' THEN 'DATABASE FILES'
-		ELSE CAST(type_desc AS VARCHAR) END) typeFile,
-		name nameFileLogic,
-		CAST(databasepropertyex (DB_NAME(database_id), 'recovery') AS VARCHAR) modelRecovery,
-		physical_name nameFilePhysical,
-		(SUM(size) * 8) / 1024 AS sizeMB,
-		CAST(((sum(size) * 8) / 1024) / 1024.0 AS DECIMAL(10,2)) sizeGB
-	FROM sys.master_files
-	WHERE database_id > 4 --excluyendo las BD del sistema
-	AND type_desc = 'LOG'
-	GROUP BY DB_NAME(database_id), type_desc, physical_name,name
+		DB_NAME(dbid) dbName,
+		(CASE groupid 
+			WHEN '0' THEN 'LOG FILES'
+			WHEN '1' THEN 'DATABASE FILES'  
+			ELSE CAST(groupid AS VARCHAR)
+		END) typeFile, 
+		LTRIM(RTRIM(name)) nameFileLogic,
+		filename nameFilePhysical,
+		CAST(MAX(databasepropertyex (DB_NAME(dbid), 'recovery')) AS VARCHAR) modelRecovery,
+		((sum(size) * 8) / 1024) as sizeMB,
+		CAST(((sum(size) * 8) / 1024) / 1024.0 AS DECIMAL(10,2)) as sizeG
+	FROM master..sysaltfiles
+	WHERE dbid > 4 --excluyendo las BD del sistema
+	AND ((size * 8) / 1024) > 1024
+	AND groupid = 0
+	GROUP BY DB_NAME(dbid), groupid,name, filename
 	ORDER BY 6 DESC	
 OPEN cFiles
 FETCH NEXT FROM cFiles INTO @dbName, @typeFile, @nameFileLogic, @modelRecovery, @nameFilePhysical, @sizeMB, @sizeGB
@@ -33,20 +35,18 @@ WHILE (@@fetch_status <> -1)
 		IF (@modelRecovery = 'FULL') 
 		BEGIN
 			SET @Ind = 1
-			EXEC ('ALTER DATABASE ['+ @dbName +'] SET RECOVERY SIMPLE');
+			PRINT ('ALTER DATABASE ['+ @dbName +'] SET RECOVERY SIMPLE');
 		END
 
 		EXEC ('USE [' + @dbName + '] DBCC SHRINKFILE (N''' + @nameFileLogic +''',1)');
 
 		IF (@Ind = 1)
 		BEGIN
-			EXEC ('ALTER DATABASE ['+ @dbName +'] SET RECOVERY FULL');
+			PRINT ('ALTER DATABASE ['+ @dbName +'] SET RECOVERY FULL');
 			SET @Ind = 0
-		END		
+		END
 		FETCH NEXT FROM cFiles INTO @dbName, @typeFile, @nameFileLogic, @modelRecovery, @nameFilePhysical, @sizeMB, @sizeGB
 	END
 CLOSE cFiles
 DEALLOCATE cFiles
 GO
-
-SP_WHO2 'ACTIVE'
