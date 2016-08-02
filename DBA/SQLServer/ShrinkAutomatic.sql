@@ -21,10 +21,11 @@ DECLARE cFiles CURSOR READ_ONLY FOR
 		(SUM(size) * 8) / 1024 AS sizeMB,
 		CAST(((sum(size) * 8) / 1024) / 1024.0 AS DECIMAL(10,2)) sizeGB
 	FROM sys.master_files
-	WHERE database_id > 4 --excluyendo las BD del sistema
-	AND type_desc = 'LOG'
+	WHERE database_id > -1 --excluyendo las BD del sistema
+	--AND type_desc = 'ROWS'
+	AND DB_NAME(database_id) = 'tempdb'
 	GROUP BY DB_NAME(database_id), type_desc, physical_name,name
-	ORDER BY 6 DESC	
+	ORDER BY 6 DESC
 OPEN cFiles
 FETCH NEXT FROM cFiles INTO @dbName, @typeFile, @nameFileLogic, @modelRecovery, @nameFilePhysical, @sizeMB, @sizeGB
 
@@ -48,5 +49,3 @@ WHILE (@@fetch_status <> -1)
 CLOSE cFiles
 DEALLOCATE cFiles
 GO
-
-SP_WHO2 'ACTIVE'

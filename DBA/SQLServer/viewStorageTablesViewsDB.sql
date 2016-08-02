@@ -1,5 +1,5 @@
 SET NOCOUNT OFF
-DBCC UPDATEUSAGE(0)
+--DBCC UPDATEUSAGE(0)
 
 -- Creacion de tabla temporal
 DECLARE @Results TABLE (
@@ -40,4 +40,5 @@ SELECT
 	(unused/1024) unusedMB,
 	((unused/1024)/1024) unusedGB
 FROM @Results
+WHERE name in('FACClientes','FACCaptacionesPlazo','FACCaptacionesVista','FACContable','FACPrestamos','FACSobregiros','FACClientesResumen')
 ORDER BY  CONVERT(BIGINT,reserved) DESC
