@@ -11,7 +11,7 @@ READ_ONLY
 FOR 
 SELECT dbid, name FROM
 sysdatabases 
-WHERE name  in ('db_IDA2_bk') -- Name DB
+WHERE name  in ('MATCHER') -- Name DB
 
 OPEN cAttach
 FETCH NEXT FROM cAttach INTO @dbid, @name

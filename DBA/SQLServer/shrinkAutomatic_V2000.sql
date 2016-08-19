@@ -35,14 +35,14 @@ WHILE (@@fetch_status <> -1)
 		IF (@modelRecovery = 'FULL') 
 		BEGIN
 			SET @Ind = 1
-			PRINT ('ALTER DATABASE ['+ @dbName +'] SET RECOVERY SIMPLE');
+			EXEC ('ALTER DATABASE ['+ @dbName +'] SET RECOVERY SIMPLE');
 		END
 
 		EXEC ('USE [' + @dbName + '] DBCC SHRINKFILE (N''' + @nameFileLogic +''',1)');
 
 		IF (@Ind = 1)
 		BEGIN
-			PRINT ('ALTER DATABASE ['+ @dbName +'] SET RECOVERY FULL');
+			EXEC ('ALTER DATABASE ['+ @dbName +'] SET RECOVERY FULL');
 			SET @Ind = 0
 		END
 		FETCH NEXT FROM cFiles INTO @dbName, @typeFile, @nameFileLogic, @modelRecovery, @nameFilePhysical, @sizeMB, @sizeGB

@@ -3,7 +3,10 @@
 # mkdir	-- Crea directorio
 # cd 	-- Ir a directorio
 # ls	-- Lista de archivos
-# sqlplus / as sysdba 		-- SQL*Plus
+# date 	-- Fecha del Sistema
+# psrinfo	-- Ver procesadores
+# history 	-- Historial de consola
+# sqlplus / as sysdba		-- SQL*Plus
 # export ORACLE_SID=bankbu 	-- Exporta variable de entorno
 
 === RAC ===
@@ -25,4 +28,4 @@
 # ALTER SESSION SET current_schema = OPENCARD/COBRA;	-- Altera sesion
 
 ----------
-# ps -ef | grep smon -- Instancias
+# ps -ef | grep smon -- Ver instancias

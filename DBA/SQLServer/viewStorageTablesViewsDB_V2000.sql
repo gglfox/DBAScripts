@@ -1,5 +1,6 @@
+USE DB_Ida2
 SET NOCOUNT OFF
-DBCC UPDATEUSAGE(0)
+--DBCC UPDATEUSAGE(0)
 
 -- Cursor con tablas de sistema, tablas de usuario y vistas
 DECLARE curObjects CURSOR FOR

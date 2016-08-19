@@ -1,6 +1,7 @@
 SELECT
 	C.[NUMBER],
 	T.[ASSIGNED_TO],
+	C.[CURRENT_PHASE],
 	C.[REQUESTED_BY],
 	C.[PLANNED_START],
 	C.[PLANNED_END],
@@ -15,7 +16,7 @@ SELECT
 FROM [SMBODSA2].[dbo].[CM3TM1] T
 INNER JOIN [SMBODSA2].[dbo].[CM3RM1] C ON C.NUMBER = T.PARENT_CHANGE
 WHERE T.[STATUS] = 'initial' 
-AND C.[CURRENT_PHASE] IN ('Evaluación & Cierre del Cambio','Implementación del Cambio')
+AND C.[CURRENT_PHASE] IN ('Evaluación & Cierre del Cambio','Implementación del Cambio','Distribución del Cambio')
 AND T.[ASSIGN_DEPT] = ('ADM BASES DE DATOS DISTRIBUIDA')
 AND T.[COMPLETION_CODE] IS NULL
 ORDER BY c.[PLANNED_END];

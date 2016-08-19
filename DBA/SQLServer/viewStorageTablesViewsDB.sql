@@ -1,3 +1,4 @@
+USE DWH
 SET NOCOUNT OFF
 --DBCC UPDATEUSAGE(0)
 
@@ -40,5 +41,4 @@ SELECT
 	(unused/1024) unusedMB,
 	((unused/1024)/1024) unusedGB
 FROM @Results
-WHERE name in('FACClientes','FACCaptacionesPlazo','FACCaptacionesVista','FACContable','FACPrestamos','FACSobregiros','FACClientesResumen')
 ORDER BY  CONVERT(BIGINT,reserved) DESC

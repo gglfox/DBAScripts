@@ -3,6 +3,7 @@
 # sp_databases		-- Obtiene base de datos
 # xp_fixeddrives	-- Obtiene espacio diponible
 # sp_who2 'active'	-- Obtiene procesos en BD
+# sp_helpfile			-- Obtiene archivos de BD
 # sp_helptext 'Name'	-- Obtiene fuente de objeto
 # sp_changedbowner 'sa'	-- Asigna propietario BD
 
