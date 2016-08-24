@@ -41,4 +41,14 @@ SELECT
 	(unused/1024) unusedMB,
 	((unused/1024)/1024) unusedGB
 FROM @Results
+/*WHERE name IN
+(
+'FACClientes',
+'FACCaptacionesPlazo',
+'FACCaptacionesVista',
+'FACContable',
+'FACPrestamos',
+'FACSobregiros',
+'FACClientesResumen'
+)*/
 ORDER BY  CONVERT(BIGINT,reserved) DESC

@@ -1,2 +1,2 @@
-# scriptsDatabase
+# DBAScripts
 Scripts to manage databases.
