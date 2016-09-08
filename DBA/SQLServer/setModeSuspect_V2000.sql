@@ -8,9 +8,9 @@ GO
 
 --Actualizar status
 UPDATE sysdatabases
---SET status = status | -32768 --emergencia
-SET status = 24 --normal
-WHERE name='db_IDA2'
+SET status = status | -32768 --emergencia
+--SET status = 24 --normal
+WHERE name='BBDD_Suspect'
 GO
 
 --Reversar la configuracion
@@ -20,12 +20,12 @@ RECONFIGURE WITH OVERRIDE
 GO
 
 -- Reconstruir archivo de log (colocamos un nombre diferente al .ldf existente)
-DBCC REBUILD_LOG (db_IDA2,'F:\db_IDA\Datos\db_IDA2_Log_3.ldf')
+DBCC REBUILD_LOG (BBDD_Suspect,'F:\db_IDA\Datos\db_IDA2_Log_3.ldf')
 
 -- Abrir la BD
-ALTER DATABASE db_IDA2 SET MULTI_USER
+ALTER DATABASE BBDD_Suspect SET MULTI_USER
 
-USE db_IDA2
+USE BBDD_Suspect
 GO
-DBCC CHECKDB (db_IDA2, NOINDEX)
+DBCC CHECKDB (BBDD_Suspect, NOINDEX)
 GO

@@ -1,7 +1,7 @@
--- 
+-- Ver espacios de filegroups
 USE DWH
 SELECT 
-	--fg.groupid,
+	fg.groupid,
     fg.groupname filegroup,
 	--f.fileid,
     f.name datafileName,	
@@ -15,13 +15,9 @@ SELECT
 	CONVERT (DEC(15,2),ROUND(((f.size-FILEPROPERTY(f.name,'SpaceUsed'))/128.000),2)/2014) sizeAvailableGB,
     CONVERT (DEC(15,2),ROUND(FILEPROPERTY(f.name,'SpaceUsed')/128.000,2)/ROUND(f.size/128.000,2)*100) usagePercentage	
 FROM sys.sysfiles f (NOLOCK) JOIN sys.sysfilegroups fg (NOLOCK) ON f.groupid = fg.groupid
-WHERE f.name LIKE '%Resumen%'
+--WHERE fg.groupname LIKE '%FACClientesResumen%'
+WHERE f.name LIKE '%ClienteResumen%'
 /*AND fg.groupname not in (
-'DWHClienteResumenMesActual',
-'FGFACClientesResumen201606',
-'FGFACClientesResumen201607',
-'FGFACClientesResumen201608',
-'DWHClienteResumenMesNuevo'
-)*/
 
-ORDER BY 10 DESC
+)*/
+ORDER BY 9 DESC

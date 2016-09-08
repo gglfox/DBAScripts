@@ -22,9 +22,8 @@ DECLARE cFiles CURSOR READ_ONLY FOR
 		((sum(size) * 8) / 1024) as sizeMB,
 		CAST(((sum(size) * 8) / 1024) / 1024.0 AS DECIMAL(10,2)) as sizeG
 	FROM master..sysaltfiles
-	WHERE /*dbid > 4 --excluyendo las BD del sistema
+	WHERE dbid > 4 --excluyendo las BD del sistema
 	AND groupid = 0
-	and */DB_NAME(dbid) = 'db_IDA2'
 	GROUP BY DB_NAME(dbid), groupid,name, filename
 	ORDER BY 6 DESC	
 OPEN cFiles

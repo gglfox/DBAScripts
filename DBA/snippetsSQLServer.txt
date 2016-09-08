@@ -15,6 +15,7 @@
 # SELECT @@VERSION	-- Obtiene version SQL Server
 # SELECT @@LANGUAGE	-- Obtiene idioma SQL Server
 # SELECT databasepropertyex ('tempdb', 'recovery') -- Obtiene model recovery
+# SELECT serverproperty('Servername') -- Obtiene nombre del servidor
 
 ===== System tables =====
 # SELECT * FROM sys.databases 		-- Databases

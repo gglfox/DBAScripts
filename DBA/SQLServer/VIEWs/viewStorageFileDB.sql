@@ -7,11 +7,11 @@ SELECT
 		WHEN 'ROWS' THEN 'DATABASE FILES'
 		ELSE CAST(type_desc AS VARCHAR)
 	END) typeFile, 
-	name [Filegroup],
-	physical_name nameFilePhysical,
+	name fileName,
+	physical_name fileNamePhysical,
 	MAX(databasepropertyex (DB_NAME(database_id), 'recovery')) modelRecovery,
-	((SUM(CAST(size AS BIGINT))*8)/1024) sizeMB,
-	(((SUM(CAST(size AS BIGINT))*8)/1024)/1024) sizeGB
+	((SUM(CAST(size AS BIGINT)) * 8) / 1024) sizeMB,
+	(((SUM(CAST(size AS BIGINT)) * 8) / 1024) / 1024) sizeGB
 FROM sys.master_files
 WHERE DB_NAME(database_id) = 'DWH'
 --AND type_desc = 'LOG'
