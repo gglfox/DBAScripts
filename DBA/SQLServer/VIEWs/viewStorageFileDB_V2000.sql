@@ -13,6 +13,6 @@ SELECT
 	CAST(((SUM(size) * 8) / 1024) / 1024.0 AS DECIMAL(10,2)) as sizeG
 FROM master..sysaltfiles
 WHERE dbid > 4 --excluyendo las BD del sistema
-AND filename LIKE '%Vol_15%'
+AND filename LIKE '%F:%'
 GROUP BY DB_NAME(dbid), groupid,name, filename
 ORDER BY 6 DESC

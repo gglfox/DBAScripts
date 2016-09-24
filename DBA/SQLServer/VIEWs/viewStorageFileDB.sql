@@ -13,8 +13,9 @@ SELECT
 	((SUM(CAST(size AS BIGINT)) * 8) / 1024) sizeMB,
 	(((SUM(CAST(size AS BIGINT)) * 8) / 1024) / 1024) sizeGB
 FROM sys.master_files
-WHERE DB_NAME(database_id) = 'DWH'
---AND type_desc = 'LOG'
+WHERE-- DB_NAME(database_id) = 'DWH'
+--AND 
+type_desc = 'LOG'
 --AND name LIKE '%CCliente%'
 GROUP BY database_id,DB_NAME(database_id), type_desc, name,physical_name
 ORDER BY 7 DESC

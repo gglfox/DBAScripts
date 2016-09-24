@@ -6,7 +6,6 @@
 # sp_helpfile			-- Obtiene archivos de BD
 # sp_helptext 'Name'	-- Obtiene fuente de objeto
 # sp_changedbowner 'sa'	-- Asigna propietario BD
-
 # exec sp_rename 'ObjA','ObjB'	-- Cambia nombre objeto
 # dbcc inputbuffer(SPID)		-- Obtiene instruccion
 
