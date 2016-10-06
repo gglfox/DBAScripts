@@ -25,5 +25,6 @@ Enabled DAC SQLEXPRESS -> Startup Parameters Instance -> Add TRACEFLAG -T7806
 
 ----------
 sys.master_files
-EXEC master..sp_helpfile
 dbcc checkdb
+Dbcc opentran -- ver transacciones
+kill 83 with statusonly -- para ver progreso

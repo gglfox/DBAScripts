@@ -41,14 +41,19 @@ SELECT --TOP 10
 	(unused/1024) unusedMB,
 	((unused/1024)/1024) unusedGB
 FROM @Results
-/*WHERE name IN
+WHERE name IN
 (
-'FACClientes',
 'FACCaptacionesPlazo',
 'FACCaptacionesVista',
+'FACCarteraTDC',
+'FACClientes',
+'FACClientesResumen',
 'FACContable',
+'FACContabilidadCentroCosto',
 'FACPrestamos',
 'FACSobregiros',
-'FACClientesResumen'
-)*/
+'FACTDetTransacAgenciasD',
+'FACTResTransacAgenciasD',
+'FACTResTransacAgenciasM'
+)
 ORDER BY  CONVERT(BIGINT,rows) DESC

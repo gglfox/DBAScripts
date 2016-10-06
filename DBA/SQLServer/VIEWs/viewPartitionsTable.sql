@@ -1,6 +1,6 @@
 -- Ver particiones de una tablas
 USE DWH
-DECLARE @tableName NVARCHAR(200) = N'dbo.FACCaptacionesVista_NEW' -- 57.092.157
+DECLARE @tableName NVARCHAR(200) = N'dbo.FACClientes'
 SELECT
 	SCHEMA_NAME(o.schema_id) + '.' + OBJECT_NAME(i.object_id) AS [object],
 	p.partition_number AS [p#],
